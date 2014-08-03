@@ -5,12 +5,13 @@ Devise.setup do |config|
   # random tokens. Changing this key will render invalid all existing
   # confirmation, reset password and unlock tokens in the database.
   # config.secret_key = '2ecb9ad84a8e33f60dd04d37ace10d6c7dbb8ce5537c10b2860e1abdb70d2964100c9db0b27cd15818bd6e33b6f64fc8ba8f60b2d7a947200cf0e5e72c3c7843'
+  config.secret_key = Rails.application.secrets[:secret_key_base]
 
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
-  config.mailer_sender = 'please-change-me-at-config-initializers-devise@example.com'
+  config.mailer_sender = 'hello@rh.izo.me'
 
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'
@@ -229,8 +230,7 @@ Devise.setup do |config|
   # ==> OmniAuth
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
-
-  # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
+  config.omniauth :github, Rails.application.secrets.github_key, Rails.application.secrets.github_secret, scope: 'user,public_repo'
   config.omniauth :facebook, Rails.application.secrets.facebook_key, Rails.application.secrets.facebook_secret
   config.omniauth :twitter, Rails.application.secrets.twitter_key, Rails.application.secrets.twitter_secret
   config.omniauth :linkedin, Rails.application.secrets.linkedin_key, Rails.application.secrets.linkedin_secret
