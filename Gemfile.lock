@@ -160,6 +160,8 @@ GEM
     omniauth (1.2.2)
       hashie (>= 1.2, < 4)
       rack (~> 1.0)
+    omniauth-dropbox-oauth2 (0.2.0)
+      omniauth-oauth2
     omniauth-facebook (1.6.0)
       omniauth-oauth2 (~> 1.1)
     omniauth-github (1.1.2)
@@ -320,6 +322,7 @@ DEPENDENCIES
   jquery-rails
   launchy
   omniauth
+  omniauth-dropbox-oauth2
   omniauth-facebook
   omniauth-github
   omniauth-linkedin

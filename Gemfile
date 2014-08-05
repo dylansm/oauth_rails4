@@ -27,6 +27,7 @@ gem 'omniauth-twitter'
 gem 'omniauth-facebook'
 gem 'omniauth-linkedin'
 gem 'omniauth-github'
+gem 'omniauth-dropbox-oauth2'
 
 # Use Capistrano for deployment
 group :development do
