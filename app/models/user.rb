@@ -14,6 +14,7 @@ class User < ActiveRecord::Base
 
   def self.find_for_oauth(auth, signed_in_resource=nil)
     identity = Identity.find_for_oauth(auth)
+    identity.token = auth.credentials.token
     user = signed_in_resource ? signed_in_resource : identity.user
     # Create the user if needed
     if user.nil?
@@ -27,11 +28,13 @@ class User < ActiveRecord::Base
 
       # Create the user if it's a new registration
       if user.nil?
+        byebug
         user = User.new(
           name: auth.extra.raw_info.name,
           #username: auth.info.nickname || auth.uid,
           email: email ? email : "#{TEMP_EMAIL_PREFIX}-#{auth.uid}-#{auth.provider}.com",
-          password: Devise.friendly_token[0,20]
+          password: Devise.friendly_token[0,20],
+          #token: auth.credentials.token
         )
         user.skip_confirmation!
         user.save!
